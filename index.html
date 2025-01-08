@@ -23,6 +23,25 @@
     </style>
 </head>
 <body>
-    <iframe src="https://petridish.pw/ru/#petri" frameborder="0"></iframe>
+    <script>
+        function loadIframe() {
+            const hash = window.location.hash;
+            let iframeSrc = "https://petridish.pw/ru/#petri"; // Значение по умолчанию
+
+            if (hash) {
+                 const customHash = hash.substring(1); // Убираем символ #
+                iframeSrc = `https://petridish.pw/ru/#${customHash}`;
+            }
+            
+            const iframe = document.createElement('iframe');
+            iframe.src = iframeSrc;
+            iframe.frameBorder = 0;
+            document.body.appendChild(iframe);
+
+        }
+
+        // Загружаем iframe при загрузке страницы
+        window.onload = loadIframe;
+    </script>
 </body>
 </html>
