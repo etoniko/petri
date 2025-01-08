@@ -25,19 +25,24 @@
 <body>
     <script>
         function loadIframe() {
+            const path = window.location.pathname; // Получаем путь после домена
             const hash = window.location.hash;
             let iframeSrc = "https://petridish.pw/ru/#petri"; // Значение по умолчанию
 
-            if (hash) {
-                 const customHash = hash.substring(1); // Убираем символ #
-                iframeSrc = `https://petridish.pw/ru/#${customHash}`;
+            // Проверяем, есть ли путь после домена
+            if (path && path !== "/") {
+                 // Убираем начальный слеш и добавляем его в конец URL
+                const customPath = path.substring(1);
+                 iframeSrc = `https://petridish.pw/${customPath}${hash ? hash : ""}`; 
+            } else if (hash){
+                const customHash = hash.substring(1);
+                iframeSrc = `https://petridish.pw/ru/#${customHash}`
             }
             
             const iframe = document.createElement('iframe');
             iframe.src = iframeSrc;
             iframe.frameBorder = 0;
             document.body.appendChild(iframe);
-
         }
 
         // Загружаем iframe при загрузке страницы
