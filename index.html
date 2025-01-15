@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Чашка Петри</title>  
-    <link rel="icon" href="https://petridish.pw/favicon.ico" type="image/x-icon"> 
-    <meta name="description" content="Сервера Чашки Петри расположены в России и Европе, гораздо ближе, чем у агар ио...">
-    
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <title>Test.</title>
     <style>
+        /* Стили для баннера */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1e1e1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            z-index: 9999;
+        }
+        #overlay img {
+			    max-width: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	    padding-left: 5px;
+        }
+        #overlay a {
+            text-decoration: none;
+        }
+        /* Стили для iframe */
         body, html {
             margin: 0;
             padding: 0;
@@ -20,33 +43,82 @@
             height: 100%;
             border: none; 
         }
+		.link{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+		}
+		.js{
+		    color: gold;
+		}
+		.tem{
+		    color: aliceblue;
+		}
+		
+		        .result {
+            margin-top: 120px; /* To make space for the fixed header */
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: auto;
+        }
+
+        .result-item {
+            padding: 15px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .result-item:hover {
+            transform: scale(1.05);
+            background: #3a3a3a;
+        }
+		.logo{
+		font-size: 27px;
+    font-family: auto;
+		display: flex;
+    align-items: center;
+    gap: 10px;
+		}
+		        header{
+            background-color: #2a2a2a;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
-    <script>
-        function loadIframe() {
-            const path = window.location.pathname; // Получаем путь после домена
-            const hash = window.location.hash;
-            let iframeSrc = "https://petridish.pw/ru/#petri"; // Значение по умолчанию
+ <!-- Баннер для установки Tampermonkey -->
+    <div id="overlay">
+	    <header>
+<div class="logo"><img src="https://skins9cached.petridish.info/engine/serverskins/63899.png" alt="Tampermonkey">PetriDish</div>
+    </header>
+        <div>
+            <p style="font-size: larger;">Для работы сайта сначала установите Tampermonkey потом  Js скрипт.</p>
+			<div class="link">
+            <a class="tem result-item" href="https://www.tampermonkey.net/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5.955.002C3-.071.275 2.386.043 5.335c-.069 3.32-.011 6.646-.03 9.969c.06 1.87-.276 3.873.715 5.573c1.083 2.076 3.456 3.288 5.77 3.105c4.003-.011 8.008.022 12.011-.017c2.953-.156 5.478-2.815 5.482-5.772c-.007-4.235.023-8.473-.015-12.708C23.82 2.533 21.16.007 18.205.003c-4.083-.005-8.167 0-12.25-.002zm.447 12.683c2.333-.046 4.506 1.805 4.83 4.116c.412 2.287-1.056 4.716-3.274 5.411c-2.187.783-4.825-.268-5.874-2.341c-1.137-2.039-.52-4.827 1.37-6.197a4.9 4.9 0 0 1 2.948-.99zm11.245 0c2.333-.046 4.505 1.805 4.829 4.116c.413 2.287-1.056 4.716-3.273 5.411c-2.188.783-4.825-.268-5.875-2.341c-1.136-2.039-.52-4.827 1.37-6.197a4.9 4.9 0 0 1 2.949-.99z"/></svg> Tempermonkey</a>
+            <a class="js result-item" href="https://update.greasyfork.org/scripts/523846/Tampermonkey%20Check%20and%20Logic%20for%20Iframe.user.js" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.998 24c-.321 0-.641-.084-.922-.247L8.14 22.016c-.438-.245-.224-.332-.08-.383c.585-.203.703-.25 1.328-.604c.065-.037.151-.023.218.017l2.256 1.339a.29.29 0 0 0 .272 0l8.795-5.076a.28.28 0 0 0 .134-.238V6.921a.28.28 0 0 0-.137-.242l-8.791-5.072a.28.28 0 0 0-.271 0L3.075 6.68a.28.28 0 0 0-.139.241v10.15a.27.27 0 0 0 .139.235l2.409 1.392c1.307.654 2.108-.116 2.108-.89V7.787c0-.142.114-.253.256-.253h1.115c.139 0 .255.112.255.253v10.021c0 1.745-.95 2.745-2.604 2.745c-.508 0-.909 0-2.026-.551L2.28 18.675a1.86 1.86 0 0 1-.922-1.604V6.921c0-.659.353-1.275.922-1.603L11.075.236a1.93 1.93 0 0 1 1.848 0l8.794 5.082c.57.329.924.944.924 1.603v10.15a1.86 1.86 0 0 1-.924 1.604l-8.794 5.078c-.28.163-.599.247-.925.247m7.101-10.007c0-1.9-1.284-2.406-3.987-2.763c-2.731-.361-3.009-.548-3.009-1.187c0-.528.235-1.233 2.258-1.233c1.807 0 2.473.389 2.747 1.607a.254.254 0 0 0 .247.199h1.141a.26.26 0 0 0 .186-.081a.26.26 0 0 0 .067-.196c-.177-2.098-1.571-3.076-4.388-3.076c-2.508 0-4.004 1.058-4.004 2.833c0 1.925 1.488 2.457 3.895 2.695c2.88.282 3.103.703 3.103 1.269c0 .983-.789 1.402-2.642 1.402c-2.327 0-2.839-.584-3.011-1.742a.255.255 0 0 0-.253-.215h-1.137a.25.25 0 0 0-.254.253c0 1.482.806 3.248 4.655 3.248c2.788.001 4.386-1.096 4.386-3.013"/></svg>JavaScript</a>
+        </div>
+		</div>
+    </div>
 
-            // Проверяем, есть ли путь после домена
-            if (path && path !== "/") {
-                 // Убираем начальный слеш и добавляем его в конец URL
-                const customPath = path.substring(1);
-                 iframeSrc = `https://petridish.pw/${customPath}${hash ? hash : ""}`; 
-            } else if (hash){
-                const customHash = hash.substring(1);
-                iframeSrc = `https://petridish.pw/ru/#${customHash}`
-            }
-            
-            const iframe = document.createElement('iframe');
-            iframe.src = iframeSrc;
-            iframe.frameBorder = 0;
-            document.body.appendChild(iframe);
-        }
-
-        // Загружаем iframe при загрузке страницы
-        window.onload = loadIframe;
-    </script>
+    <!-- Iframe для загрузки petridish.pw -->
+    <iframe src="https://petridish.pw/test/" id="iframe-petridish"></iframe>
 </body>
 </html>
